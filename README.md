@@ -1,3 +1,5 @@
+This is a react app that uses Split pane.
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 ## Available Scripts
