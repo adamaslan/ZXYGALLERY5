@@ -1,3 +1,34 @@
+Skip to content
+Search or jump to…
+
+Pull requests
+Issues
+Marketplace
+Explore
+ 
+@adamaslan 
+adamaslan
+/
+nextjs-blog
+1
+00
+Code
+Issues
+Pull requests
+Actions
+Projects
+Wiki
+Security
+Insights
+Settings
+nextjs-blog/src/SplitPane.js /
+@adamaslan
+adamaslan animation
+Latest commit 8476f10 on Nov 5, 2020
+ History
+ 1 contributor
+392 lines (343 sloc)  10.9 KB
+  
 import React from "react";
 import PropTypes from "prop-types";
 import stylePropType from "react-style-proptype";
@@ -20,7 +51,7 @@ function unFocus(document, window) {
 function getDefaultSize(defaultSize, minSize, maxSize, draggedSize) {
   if (typeof draggedSize === "number") {
     const min = typeof minSize === "number" ? minSize : 0;
-    const max =
+    const max = 
       typeof maxSize === "number" && maxSize >= 0 ? maxSize : Infinity;
     return Math.max(min, Math.min(max, draggedSize));
   }
@@ -31,7 +62,7 @@ function getDefaultSize(defaultSize, minSize, maxSize, draggedSize) {
 }
 
 function removeNullChildren(children) {
-  return React.Children.toArray(children).filter(c => c);
+  return React.Children.toArray(children).filter((c) => c);
 }
 class SplitPane extends React.Component {
   constructor(props) {
@@ -62,8 +93,8 @@ class SplitPane extends React.Component {
 
       // these are props that are needed in static functions. ie: gDSFP
       instanceProps: {
-        size
-      }
+        size,
+      },
     };
   }
 
@@ -86,7 +117,7 @@ class SplitPane extends React.Component {
 
   onMouseDown(event) {
     const eventWithTouches = Object.assign({}, event, {
-      touches: [{ clientX: event.clientX, clientY: event.clientY }]
+      touches: [{ clientX: event.clientX, clientY: event.clientY }],
     });
     this.onTouchStart(eventWithTouches);
   }
@@ -105,14 +136,14 @@ class SplitPane extends React.Component {
       }
       this.setState({
         active: true,
-        position
+        position,
       });
     }
   }
 
   onMouseMove(event) {
     const eventWithTouches = Object.assign({}, event, {
-      touches: [{ clientX: event.clientX, clientY: event.clientY }]
+      touches: [{ clientX: event.clientX, clientY: event.clientY }],
     });
     this.onTouchMove(eventWithTouches);
   }
@@ -175,7 +206,7 @@ class SplitPane extends React.Component {
           } else {
             this.setState({
               position: newPosition,
-              resized: true
+              resized: true,
             });
           }
 
@@ -183,7 +214,7 @@ class SplitPane extends React.Component {
 
           this.setState({
             draggedSize: newSize,
-            [isPrimaryFirst ? "pane1Size" : "pane2Size"]: newSize
+            [isPrimaryFirst ? "pane1Size" : "pane2Size"]: newSize,
           });
         }
       }
@@ -250,7 +281,7 @@ class SplitPane extends React.Component {
       resizerClassName,
       resizerStyle,
       split,
-      style: styleProps
+      style: styleProps,
     } = this.props;
 
     const { pane1Size, pane2Size } = this.state;
@@ -265,30 +296,30 @@ class SplitPane extends React.Component {
     const style = {
       display: "flex",
       flex: 1,
-      height: "100%",
+      height: "25%",
       position: "absolute",
       outline: "none",
-      overflow: "hidden",
+      overflow: "none",
       MozUserSelect: "text",
       WebkitUserSelect: "text",
       msUserSelect: "text",
       userSelect: "text",
-      ...styleProps
+      ...styleProps,
     };
 
     if (split === "vertical") {
       Object.assign(style, {
         flexDirection: "row",
         left: 0,
-        right: 0
+        right: 0,
       });
     } else {
       Object.assign(style, {
         bottom: 0,
         flexDirection: "column",
-        minHeight: "100%",
+        minHeight: "5%",
         top: 0,
-        width: "100%"
+        width: "5%",
       });
     }
 
@@ -303,7 +334,7 @@ class SplitPane extends React.Component {
     return (
       <div
         className={classes.join(" ")}
-        ref={node => {
+        ref={(node) => {
           this.splitPane = node;
         }}
         style={style}
@@ -311,7 +342,7 @@ class SplitPane extends React.Component {
         <Pane
           className={pane1Classes}
           key="pane1"
-          eleRef={node => {
+          eleRef={(node) => {
             this.pane1 = node;
           }}
           size={pane1Size}
@@ -335,7 +366,7 @@ class SplitPane extends React.Component {
         <Pane
           className={pane2Classes}
           key="pane2"
-          eleRef={node => {
+          eleRef={(node) => {
             this.pane2 = node;
           }}
           size={pane2Size}
@@ -374,19 +405,31 @@ SplitPane.propTypes = {
   pane1Style: stylePropType,
   pane2Style: stylePropType,
   resizerClassName: PropTypes.string,
-  step: PropTypes.number
+  step: PropTypes.number,
 };
 
 SplitPane.defaultProps = {
   allowResize: true,
-  minSize: 50,
+  minSize: 5,
   primary: "first",
   split: "vertical",
   paneClassName: "",
   pane1ClassName: "",
-  pane2ClassName: ""
+  pane2ClassName: "",
 };
 
 polyfill(SplitPane);
 
 export default SplitPane;
+© 2021 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Help
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
